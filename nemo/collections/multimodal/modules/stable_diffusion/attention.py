@@ -43,18 +43,18 @@ def check_cuda():
     return is_sm8x or is_sm75 or is_sm90
 
 
-try:
-    import torch.nn as nn
-    from flash_attn.modules.mha import FlashCrossAttention, FlashSelfAttention
+# try:
+#     import torch.nn as nn
+#     from flash_attn.modules.mha import FlashCrossAttention, FlashSelfAttention
 
-    flash_attn_installed = check_cuda()
-    print("FlashAttention Installed")
+#     flash_attn_installed = check_cuda()
+#     print("FlashAttention Installed")
 
-    # Disable TorchDynamo on FlashAttention
-    FlashSelfAttention.forward = disable(FlashSelfAttention.forward)
-    FlashCrossAttention.forward = disable(FlashCrossAttention.forward)
-except ImportError:
-    flash_attn_installed = False
+#     # Disable TorchDynamo on FlashAttention
+#     FlashSelfAttention.forward = disable(FlashSelfAttention.forward)
+#     FlashCrossAttention.forward = disable(FlashCrossAttention.forward)
+# except ImportError:
+#     flash_attn_installed = False
 
 
 def exists(val):
